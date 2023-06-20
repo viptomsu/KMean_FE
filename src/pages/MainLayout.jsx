@@ -1,6 +1,6 @@
 import {
 	DesktopOutlined,
-	FileOutlined,
+	OrderedListOutlined,
 	PieChartOutlined,
 	TeamOutlined,
 } from "@ant-design/icons";
@@ -22,7 +22,7 @@ const items = [
 	getItem("View Data", "chart", <PieChartOutlined />),
 	getItem("Customer", "customers", <TeamOutlined />),
 	getItem("Config Parameters", "config", <DesktopOutlined />),
-	getItem("Files", "9", <FileOutlined />),
+	getItem("Config groups", "config-label", <OrderedListOutlined />),
 ];
 
 const MainLayout = () => {

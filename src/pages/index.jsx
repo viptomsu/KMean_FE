@@ -3,6 +3,7 @@ import MainLayout from "./MainLayout";
 import Customer from "./customer";
 import Config from "./Config";
 import ChartPage from "./ChartPage";
+import ConfigLabel from "./ConfigLabel";
 
 const router = createBrowserRouter([
 	{
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
 			{
 				path: "chart",
 				element: <ChartPage />,
+			},
+			{
+				path: "config-label",
+				element: <ConfigLabel />,
 			},
 		],
 	},
