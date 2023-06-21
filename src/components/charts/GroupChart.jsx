@@ -2,15 +2,6 @@ import { Typography } from "antd";
 import React, { useCallback, useState } from "react";
 import { Cell, Pie, PieChart, Sector } from "recharts";
 
-const COLORS = [
-	"#0088FE",
-	"#00C49F",
-	"#FFBB28",
-	"#FF8042",
-	"#AF19FF",
-	"#FF0000",
-];
-
 const renderActiveShape = (props) => {
 	const RADIAN = Math.PI / 180;
 	const {
@@ -36,10 +27,12 @@ const renderActiveShape = (props) => {
 	const ey = my;
 	const textAnchor = cos >= 0 ? "start" : "end";
 
+	const groupName = payload.name || `Group ${payload.label}`;
+
 	return (
 		<g>
 			<text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-				Group {payload.label}
+				{groupName}
 			</text>
 			<Sector
 				cx={cx}
@@ -82,15 +75,6 @@ const renderActiveShape = (props) => {
 	);
 };
 
-const colors = [
-	"#8884d8",
-	"#83a6ed",
-	"#8dd1e1",
-	"#82ca9d",
-	"#a4de6c",
-	"#d0ed57",
-];
-
 const CircleChart = ({ data }) => {
 	const [active, setActive] = useState(0);
 	const onPieEnter = useCallback((_, index) => {
@@ -115,7 +99,7 @@ const CircleChart = ({ data }) => {
 					activeShape={renderActiveShape}
 					activeIndex={active}>
 					{data?.map((entry, index) => (
-						<Cell key={`cell-${index}`} fill={colors[entry.label]} />
+						<Cell key={`cell-${index}`} fill={entry.color} />
 					))}
 				</Pie>
 			</PieChart>

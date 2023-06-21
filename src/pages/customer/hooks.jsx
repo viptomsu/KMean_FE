@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useFetch } from "../../hooks";
+import { Tag } from "antd";
 
 export const useCreateCols = (reload) => {
 	const { data: groups } = useFetch("/groups");
@@ -26,7 +27,7 @@ export const useCreateCols = (reload) => {
 				width: 80,
 			},
 			{
-				title: "Annual income",
+				title: "Annual income (k$)",
 				dataIndex: "annualIncome",
 				key: "annualIncome",
 			},
@@ -40,10 +41,17 @@ export const useCreateCols = (reload) => {
 				dataIndex: "label",
 				key: "label",
 				filters: groups?.map((group) => ({
-					text: group,
-					value: group,
+					text: group.name || group.id,
+					value: group.id,
 				})),
 				onFilter: (value, record) => record.label === value,
+				render: (groupId) => {
+					const group = groups?.find((val) => val.id === groupId);
+					if(group) {
+						return <Tag color={group.color}>{group.name || group.id}</Tag>
+					}
+					return null;
+				}
 			},
 		];
 	}, [groups]);
